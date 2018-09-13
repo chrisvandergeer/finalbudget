@@ -1,3 +1,4 @@
 transakties.csv
 .idea
 *.iml
+target/
