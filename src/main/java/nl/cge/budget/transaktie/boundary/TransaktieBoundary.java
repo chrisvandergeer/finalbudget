@@ -1,4 +1,4 @@
-package nl.cge.budget.transaktie.boudary;
+package nl.cge.budget.transaktie.boundary;
 
 import nl.cge.budget.transaktie.control.find.FindTransaktieController;
 import nl.cge.budget.transaktie.control.importeer.ImporteerController;

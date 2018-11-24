@@ -1,6 +1,6 @@
 package nl.cge.budget.cmd;
 
-import nl.cge.budget.transaktie.boudary.TransaktieBoundary;
+import nl.cge.budget.transaktie.boundary.TransaktieBoundary;
 import nl.cge.budget.transaktie.entity.Transaktie;
 
 import java.math.BigDecimal;
