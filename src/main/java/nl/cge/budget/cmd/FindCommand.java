@@ -7,7 +7,9 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
+import static java.lang.System.out;
+import static java.util.stream.Collectors.toMap;
 
 public class FindCommand implements Command {
 
@@ -20,12 +22,14 @@ public class FindCommand implements Command {
     public void execute(String command) {
         Map<String, String> arguments = Arrays.stream(command.split("[-+]"))
                 .skip(1)
-                .filter(a -> a.length() > 1)
-                .collect(Collectors.toMap(a -> a.substring(0, 1), a -> a.substring(1).trim()));
+                .filter(a -> a.length() > 1) // argumenten zonder waarden wegfilteren
+                .collect(toMap(a -> a.substring(0, 1), a -> a.substring(1).trim()));
+
+        arguments.entrySet().forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
 
         List<Transaktie> transakties = new TransaktieBoundary().find(arguments);
-        transakties.forEach(t -> System.out.println(t));
+        transakties.forEach(out::println);
         BigDecimal total = transakties.stream().map(t -> t.bedrag).reduce(BigDecimal.ZERO, BigDecimal::add);
-        System.out.println("Toaal: " + total);
+        out.println("Toaal: " + total);
     }
 }

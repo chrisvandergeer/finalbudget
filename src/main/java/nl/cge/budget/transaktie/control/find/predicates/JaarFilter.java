@@ -1,4 +1,4 @@
-package nl.cge.budget.transaktie.control.find.findfilters;
+package nl.cge.budget.transaktie.control.find.predicates;
 
 import nl.cge.budget.transaktie.entity.Transaktie;
 
