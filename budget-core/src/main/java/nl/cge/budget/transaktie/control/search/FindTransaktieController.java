@@ -3,6 +3,7 @@ package nl.cge.budget.transaktie.control.search;
 import nl.cge.budget.transaktie.entity.Transaktie;
 import nl.cge.budget.transaktie.entity.TransaktieDao;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -14,9 +15,15 @@ import static java.util.Comparator.comparing;
 
 public class FindTransaktieController {
 
+    @Inject
+    private TransaktiePredicateFactory predicateFactory;
+
+    @Inject
+    private TransaktieFuctionFactory functionFactory;
+
     public List<Transaktie> find(Map<String, String> arguments) {
-        Stream<Predicate<Transaktie>> filters = new TransaktiePredicateFactory().create(arguments);
-        Stream<Function<Transaktie, Transaktie>> functions = new TransaktieFuctionFactory().create(arguments);
+        Stream<Predicate<Transaktie>> filters = predicateFactory.create(arguments);
+        Stream<Function<Transaktie, Transaktie>> functions = functionFactory.create(arguments);
 
         List<Transaktie> transakties = TransaktieDao.getInstance().findAll();
         return transakties.stream()

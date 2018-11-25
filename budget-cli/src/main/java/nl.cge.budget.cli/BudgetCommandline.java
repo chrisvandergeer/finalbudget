@@ -1,31 +1,24 @@
 package nl.cge.budget.cli;
 
 
-
 import nl.cge.budget.transaktie.boundary.TransaktieBoundary;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class BudgetCommandline {
 
-    public List<Command> commands = new ArrayList<>();
-    {
-        commands.add(new ImportCommand());
-        commands.add(new FindCommand());
-        commands.add(new HelpCommand());
-        commands.add(new ExitCommand());
-        commands.add(new NoCommand());
-    }
+    @Inject TransaktieBoundary transaktieBoundary;
 
-    public static void main(String...args) {
-        new BudgetCommandline().run();
-    }
+    @Any
+    @Inject
+    private Instance<Command> commands;
 
-    private void run() {
-        new TransaktieBoundary().importeer();
+    public void run() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("> ");
@@ -39,6 +32,11 @@ public class BudgetCommandline {
                 System.out.println("unknown command");
             }
         }
+    }
+
+    @PostConstruct
+    public void importeer() {
+        transaktieBoundary.importeer();
     }
 
 }

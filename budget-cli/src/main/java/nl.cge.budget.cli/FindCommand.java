@@ -3,6 +3,7 @@ package nl.cge.budget.cli;
 import nl.cge.budget.transaktie.boundary.TransaktieBoundary;
 import nl.cge.budget.transaktie.entity.Transaktie;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,9 @@ import static java.lang.System.out;
 import static java.util.stream.Collectors.toMap;
 
 public class FindCommand implements Command {
+
+    @Inject
+    private TransaktieBoundary transaktieBoundary;
 
     @Override
     public String commandName() {
@@ -27,7 +31,7 @@ public class FindCommand implements Command {
 
         arguments.entrySet().forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
 
-        List<Transaktie> transakties = new TransaktieBoundary().find(arguments);
+        List<Transaktie> transakties = transaktieBoundary.find(arguments);
         transakties.forEach(out::println);
         BigDecimal total = transakties.stream().map(t -> t.getBedrag()).reduce(BigDecimal.ZERO, BigDecimal::add);
         out.println("Toaal: " + total);

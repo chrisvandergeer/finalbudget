@@ -2,7 +2,6 @@ package nl.cge.budget.transaktie.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
