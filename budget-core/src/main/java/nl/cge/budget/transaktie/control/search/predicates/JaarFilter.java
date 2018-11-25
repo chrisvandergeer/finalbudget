@@ -14,6 +14,6 @@ public class JaarFilter implements Predicate<Transaktie> {
 
     @Override
     public boolean test(Transaktie transaktie) {
-        return transaktie.transaktiejaar.equals(jaar);
+        return transaktie.getTransaktiejaar().equals(jaar);
     }
 }

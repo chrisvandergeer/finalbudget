@@ -14,6 +14,6 @@ public class BegunstigdeFilter implements Predicate<Transaktie> {
 
     @Override
     public boolean test(Transaktie transaktie) {
-        return ("" + transaktie.naamTegenpartij + transaktie.rekeningTegenpartij).toUpperCase().contains(begunstigde);
+        return ("" + transaktie.getNaamTegenpartij() + transaktie.getRekeningTegenpartij()).toUpperCase().contains(begunstigde);
     }
 }

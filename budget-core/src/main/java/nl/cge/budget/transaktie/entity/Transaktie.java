@@ -1,22 +1,46 @@
 package nl.cge.budget.transaktie.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Value;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Transaktie {
 
-    public String id;
-    public String rekeningnummer;
-    public Integer transaktiejaar;
-    public Integer transaktiemaand;
-    public Integer transaktiedag;
-    public BigDecimal bedrag;
-    public BigDecimal saldoNaTransaktie;
-    public String rekeningTegenpartij;
-    public String naamTegenpartij;
-    public String omschrijving;
-    public Set<String> tags = new HashSet<>();
+    @Getter @Setter
+    private String id;
+
+    @Getter @Setter
+    private String rekeningnummer;
+
+    @Getter @Setter
+    private Integer transaktiejaar;
+
+    @Getter @Setter
+    private Integer transaktiemaand;
+
+    @Getter @Setter
+    private Integer transaktiedag;
+
+    @Getter @Setter
+    private BigDecimal bedrag;
+
+    @Getter @Setter
+    private BigDecimal saldoNaTransaktie;
+
+    @Getter @Setter
+    private String rekeningTegenpartij;
+
+    @Getter @Setter
+    private String naamTegenpartij;
+
+    @Getter @Setter
+    private String omschrijving;
+
+    private Set<String> tags = new HashSet<>();
 
     @Override
     public String toString() {
@@ -27,18 +51,6 @@ public class Transaktie {
         builder.append(String.format(" %70.70s", omschrijving));
         builder.append(String.format("%40s", tags.stream().sorted().reduce((t1, t2) -> t1 + "," + t2).orElse("")));
         return builder.toString();
-    }
-
-    public Integer getTransaktiejaar() {
-        return transaktiejaar;
-    }
-
-    public Integer getTransaktiemaand() {
-        return transaktiemaand;
-    }
-
-    public Integer getTransaktiedag() {
-        return transaktiedag;
     }
 
     public String getDatum() {
@@ -55,5 +67,9 @@ public class Transaktie {
 
     public void removeTag(String tag) {
         tags.remove(tag);
+    }
+
+    public Set<String> getTags() {
+        return new HashSet<>(tags);
     }
 }

@@ -14,6 +14,6 @@ public class OmschrijvingFilter implements Predicate<Transaktie> {
 
     @Override
     public boolean test(Transaktie transaktie) {
-        return ("" + transaktie.omschrijving).toUpperCase().contains(omschijving);
+        return ("" + transaktie.getOmschrijving()).toUpperCase().contains(omschijving);
     }
 }

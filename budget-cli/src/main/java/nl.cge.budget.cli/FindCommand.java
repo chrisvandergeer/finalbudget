@@ -29,7 +29,7 @@ public class FindCommand implements Command {
 
         List<Transaktie> transakties = new TransaktieBoundary().find(arguments);
         transakties.forEach(out::println);
-        BigDecimal total = transakties.stream().map(t -> t.bedrag).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal total = transakties.stream().map(t -> t.getBedrag()).reduce(BigDecimal.ZERO, BigDecimal::add);
         out.println("Toaal: " + total);
     }
 }

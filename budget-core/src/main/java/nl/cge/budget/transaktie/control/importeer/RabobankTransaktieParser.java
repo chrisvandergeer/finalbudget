@@ -29,16 +29,16 @@ public class RabobankTransaktieParser {
     private Transaktie mapTransaktie(String line) {
         String[] fields = line.split("\",\"");
         Transaktie transaktie = new Transaktie();
-        transaktie.id = fields[3];
-        transaktie.rekeningnummer = fields[0].replaceAll("\"", "");
-        transaktie.transaktiejaar = Integer.parseInt(fields[4].substring(0, 4));
-        transaktie.transaktiemaand = Integer.parseInt(fields[4].substring(5, 7));
-        transaktie.transaktiedag = Integer.parseInt(fields[4].substring(8, 10));
-        transaktie.bedrag = parseBedrag(fields[6]);
-        transaktie.saldoNaTransaktie = parseBedrag(fields[7]);
-        transaktie.rekeningTegenpartij = fields[8];
-        transaktie.naamTegenpartij = fields[9];
-        transaktie.omschrijving = fields[19];
+        transaktie.setId(fields[3]);
+        transaktie.setRekeningnummer(fields[0].replaceAll("\"", ""));
+        transaktie.setTransaktiejaar(Integer.parseInt(fields[4].substring(0, 4)));
+        transaktie.setTransaktiemaand(Integer.parseInt(fields[4].substring(5, 7)));
+        transaktie.setTransaktiedag(Integer.parseInt(fields[4].substring(8, 10)));
+        transaktie.setBedrag(parseBedrag(fields[6]));
+        transaktie.setSaldoNaTransaktie(parseBedrag(fields[7]));
+        transaktie.setRekeningTegenpartij(fields[8]);
+        transaktie.setNaamTegenpartij(fields[9]);
+        transaktie.setOmschrijving(fields[19]);
         return transaktie;
     }
 

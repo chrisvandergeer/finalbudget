@@ -18,4 +18,9 @@ public class TransaktieDao {
     public List<Transaktie> findAll() {
         return new ArrayList<>(transaktieList);
     }
+
+    {
+        Transaktie t = new Transaktie();
+
+    }
 }

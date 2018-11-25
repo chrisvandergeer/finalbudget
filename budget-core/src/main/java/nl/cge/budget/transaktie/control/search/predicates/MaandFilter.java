@@ -14,7 +14,7 @@ public class MaandFilter implements Predicate<Transaktie> {
 
     @Override
     public boolean test(Transaktie transaktie) {
-        return transaktie.transaktiemaand == maandFilter;
+        return transaktie.getTransaktiemaand() == maandFilter;
     }
 
 }
