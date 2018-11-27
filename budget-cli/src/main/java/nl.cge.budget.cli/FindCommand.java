@@ -29,8 +29,6 @@ public class FindCommand implements Command {
                 .filter(a -> a.length() > 1) // argumenten zonder waarden wegfilteren
                 .collect(toMap(a -> a.substring(0, 1), a -> a.substring(1).trim()));
 
-        arguments.entrySet().forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
-
         List<Transaktie> transakties = transaktieBoundary.find(arguments);
         transakties.forEach(out::println);
         BigDecimal total = transakties.stream().map(t -> t.getBedrag()).reduce(BigDecimal.ZERO, BigDecimal::add);
