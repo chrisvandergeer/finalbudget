@@ -1,4 +1,4 @@
-package nl.cge.budget.querytag.entity;
+package nl.cge.budget.tag.entity;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Data
-public class QueryTag implements Serializable {
+public class Tag implements Serializable {
 
     private Integer id;
 

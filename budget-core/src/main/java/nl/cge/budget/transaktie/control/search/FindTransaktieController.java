@@ -1,12 +1,11 @@
 package nl.cge.budget.transaktie.control.search;
 
-import nl.cge.budget.querytag.entity.QueryTag;
-import nl.cge.budget.querytag.entity.QueryTagDao;
+import nl.cge.budget.tag.entity.Tag;
+import nl.cge.budget.tag.entity.TagDao;
 import nl.cge.budget.transaktie.entity.Transaktie;
 import nl.cge.budget.transaktie.entity.TransaktieDao;
 
 import javax.inject.Inject;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -25,7 +24,7 @@ public class FindTransaktieController {
     private TransaktieFuctionFactory functionFactory;
 
     @Inject
-    private QueryTagDao queryTagDao;
+    private TagDao tagDao;
 
     public List<Transaktie> find(Map<String, String> arguments) {
         Stream<Predicate<Transaktie>> filters = predicateFactory.create(arguments);
@@ -45,9 +44,9 @@ public class FindTransaktieController {
     }
 
     private void saveQuery(Map<String, String> arguments) {
-        QueryTag queryTag = new QueryTag();
-        queryTag.setQuery(arguments);
-        queryTagDao.save(queryTag);
+        Tag tag = new Tag();
+        tag.setQuery(arguments);
+        tagDao.save(tag);
     }
 
 }

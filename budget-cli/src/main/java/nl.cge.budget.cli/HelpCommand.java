@@ -12,7 +12,7 @@ public class HelpCommand implements Command {
         System.out.println("help\ttoont deze help");
         System.out.println("exit\tsluit dhe applicatie");
         System.out.println("import\timporteert transakties");
-        System.out.println("search\tzoeken naar transakties, opties:");
+        System.out.println("find\tzoeken naar transakties, opties:");
         System.out.println("\t\t -b zoeken op tegenrekeningnummer / naam");
         System.out.println("\t\t -o zoeken op omschrijving");
         System.out.println("\t\t -j zoeken op jaar");
