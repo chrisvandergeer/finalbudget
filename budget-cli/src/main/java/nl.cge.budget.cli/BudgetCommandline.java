@@ -1,18 +1,27 @@
 package nl.cge.budget.cli;
 
 
+import nl.cge.budget.tag.boundary.TagBoundary;
 import nl.cge.budget.transaktie.boundary.TransaktieBoundary;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
+import static java.util.stream.Collectors.toMap;
+
 public class BudgetCommandline {
 
-    @Inject TransaktieBoundary transaktieBoundary;
+    @Inject
+    private TransaktieBoundary transaktieBoundary;
+
+    @Inject
+    private TagBoundary tagBoundary;
 
     @Any
     @Inject

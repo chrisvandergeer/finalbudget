@@ -21,5 +21,6 @@ public class HelpCommand implements Command {
         System.out.println("\t\t -t zoeken op tag");
         System.out.println("\t\t -T toevoegen tag");
         System.out.println("\t\t -D verwijderen tag");
+        System.out.println("findUntagged\tzoeken naar transakties zonder tag");
     }
 }

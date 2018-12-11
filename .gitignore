@@ -2,3 +2,4 @@ transakties.csv
 .idea
 *.iml
 target/
+transakties.db*
