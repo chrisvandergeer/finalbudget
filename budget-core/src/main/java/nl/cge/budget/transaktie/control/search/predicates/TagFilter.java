@@ -14,6 +14,9 @@ public class TagFilter implements Predicate<Transaktie> {
 
     @Override
     public boolean test(Transaktie transaktie) {
+        if ("NOTAG".equals(tag.toUpperCase())) {
+            return transaktie.getTags().isEmpty();
+        }
         return transaktie.containsTag(tag);
     }
 }

@@ -24,8 +24,15 @@ public class TagDao {
         return tag;
     }
 
-    public List<Tag> findAll() {
+    public List<Tag> findAllTagQueries() {
         return new ArrayList<>(table.values());
+    }
+
+    public Tag delete(Integer tagId) {
+        Tag tag = table.get(tagId);
+        table.remove(tagId);
+        db.commit();
+        return tag;
     }
 
 }

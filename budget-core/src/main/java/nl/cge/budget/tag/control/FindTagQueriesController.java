@@ -6,13 +6,13 @@ import nl.cge.budget.tag.entity.TagDao;
 import javax.inject.Inject;
 import java.util.List;
 
-public class TagListController {
+public class FindTagQueriesController {
 
     @Inject
     private TagDao tagDao;
 
     public List<Tag> findAll() {
-        return tagDao.findAll();
+        return tagDao.findAllTagQueries();
     }
 
 }

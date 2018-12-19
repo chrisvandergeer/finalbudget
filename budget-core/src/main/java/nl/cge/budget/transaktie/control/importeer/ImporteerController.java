@@ -6,7 +6,6 @@ import nl.cge.budget.transaktie.entity.Transaktie;
 import nl.cge.budget.transaktie.entity.TransaktieDao;
 
 import javax.inject.Inject;
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ImporteerController {
         List<Transaktie> transakties = rabobankTransaktieParser.parse(path);
         TransaktieDao.getInstance().insert(transakties);
 
-        tagBoundary.findAllTags().forEach(tag -> {
+        tagBoundary.findAllTagQueries().forEach(tag -> {
                 findTransaktieController.find(tag.getQueryArguments())
                         .forEach(tr -> tr.addTag(tag.getTag()));
             }

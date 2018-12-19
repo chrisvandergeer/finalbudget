@@ -18,9 +18,11 @@ public class HelpCommand implements Command {
         System.out.println("\t\t -j zoeken op jaar");
         System.out.println("\t\t -m zoeken op maand");
         System.out.println("\t\t -d zoeken op dag");
-        System.out.println("\t\t -t zoeken op tag");
+        System.out.println("\t\t -t zoeken op tag (-t notag = zoeken op transakties zonder tag)");
         System.out.println("\t\t -T toevoegen tag");
         System.out.println("\t\t -D verwijderen tag");
-        System.out.println("findUntagged\tzoeken naar transakties zonder tag");
+        System.out.println("tag\tToont alle aanwezige tags");
+        System.out.println("\t\t queries: toont alle tag queries");
+        System.out.println("\t\t delete <nr>: delete tagquerie met opgegven nrf");
     }
 }

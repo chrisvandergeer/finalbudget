@@ -1,7 +1,6 @@
 package nl.cge.budget.cli;
 
 import nl.cge.budget.tag.boundary.TagBoundary;
-import nl.cge.budget.tag.entity.TagDao;
 
 import javax.inject.Inject;
 
@@ -10,9 +9,6 @@ public class TagCommand implements Command {
     @Inject
     private TagBoundary tagBoundary;
 
-    @Inject
-    private TagDao tagDao;
-
     @Override
     public String commandName() {
         return "tag";
@@ -20,8 +16,41 @@ public class TagCommand implements Command {
 
     @Override
     public void execute(String command) {
-        tagBoundary.findAllTags().forEach(tag -> {
+        String[] splittedCommand = command.split(" ", 2);
+        if (splittedCommand.length == 1) {
+            executeFindAllTags();
+        } else {
+            String commandArguments = splittedCommand[1];
+            if (commandArguments.startsWith("queries")) {
+                executeFindAllTagQueries();
+            }
+            if (commandArguments.startsWith("delete")) {
+                executeDeleteTag(commandArguments);
+            }
+        }
+    }
+
+    private void executeFindAllTags() {
+        tagBoundary.findAllTags().forEach(t -> System.out.println("\t" + t));
+    }
+
+    private void executeFindAllTagQueries() {
+        tagBoundary.findAllTagQueries().forEach(tag -> {
             System.out.println(tag.getId() + ". [" + tag.getTag() + "]" + tag.getQuery());
         });
+    }
+
+    private void executeDeleteTag(String commandArguments) {
+        String[] splittedArguments = commandArguments.split(" ");
+        if (splittedArguments.length == 1) {
+            System.err.println("Please enter the number to delete");
+        } else {
+            try {
+                int idx = Integer.parseInt(splittedArguments[1]);
+                tagBoundary.deleteTag(idx);
+            } catch (NumberFormatException e) {
+                System.err.println("Please enter a valid number");
+            }
+        }
     }
 }
