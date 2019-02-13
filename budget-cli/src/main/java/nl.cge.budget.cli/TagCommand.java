@@ -1,13 +1,19 @@
 package nl.cge.budget.cli;
 
 import nl.cge.budget.tag.boundary.TagBoundary;
+import nl.cge.budget.transaktie.boundary.TransaktieBoundary;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.util.Map;
 
 public class TagCommand implements Command {
 
     @Inject
     private TagBoundary tagBoundary;
+
+    @Inject
+    private TransaktieBoundary transaktieBoundary;
 
     @Override
     public String commandName() {
@@ -23,11 +29,19 @@ public class TagCommand implements Command {
             String commandArguments = splittedCommand[1];
             if (commandArguments.startsWith("queries")) {
                 executeFindAllTagQueries();
-            }
-            if (commandArguments.startsWith("delete")) {
+            } else if (commandArguments.startsWith("delete")) {
                 executeDeleteTag(commandArguments);
+            } else if (commandArguments.startsWith("maand")) {
+                executeMaandoverzicht(commandArguments);
             }
         }
+    }
+
+    private void executeMaandoverzicht(String commandArguments) {
+        String[] arguments = commandArguments.split(" ");
+        String tag = arguments[1];
+        Map<String, BigDecimal> byTag = transaktieBoundary.findByTag(tag);
+        byTag.entrySet().forEach(e -> System.out.println(e.getKey() + ": " + e.getValue()));
     }
 
     private void executeFindAllTags() {

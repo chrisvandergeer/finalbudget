@@ -1,11 +1,12 @@
 package nl.cge.budget.transaktie.boundary;
 
-import nl.cge.budget.transaktie.control.search.FindUntaggedTransaktiesController;
+import nl.cge.budget.transaktie.control.FindMaandTotalenByTagController;
 import nl.cge.budget.transaktie.control.importeer.ImporteerController;
 import nl.cge.budget.transaktie.control.search.FindTransaktieController;
 import nl.cge.budget.transaktie.entity.Transaktie;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class TransaktieBoundary {
     private FindTransaktieController findTransaktieController;
 
     @Inject
-    private FindUntaggedTransaktiesController findUntaggedTransaktiesController;
+    private FindMaandTotalenByTagController findMaandTotalenByTagController;
 
     public int importeer() {
         return importeerController.importeer();
@@ -28,7 +29,7 @@ public class TransaktieBoundary {
         return findTransaktieController.find(arguments);
     }
 
-    public List<Transaktie> findUntagged() {
-        return findUntaggedTransaktiesController.findUntaggedTransakties();
+    public Map<String, BigDecimal> findByTag(String tag) {
+        return findMaandTotalenByTagController.find(tag);
     }
 }

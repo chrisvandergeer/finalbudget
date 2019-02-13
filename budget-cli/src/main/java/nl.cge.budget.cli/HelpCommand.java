@@ -24,5 +24,6 @@ public class HelpCommand implements Command {
         System.out.println("tag\tToont alle aanwezige tags");
         System.out.println("\t\t queries: toont alle tag queries");
         System.out.println("\t\t delete <nr>: delete tagquerie met opgegven nrf");
+        System.out.println("\t\t maand <tag>: toont een totaal-overzicht per maand van alle transakties met opgegeven tag");
     }
 }
